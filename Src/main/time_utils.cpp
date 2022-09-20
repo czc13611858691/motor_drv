@@ -1,4 +1,5 @@
 #include "time_utils.h"
+#include "stdint.h"
 
 // function buffering delay() 
 // arduino uno function doesn't work well with interrupts
@@ -9,7 +10,11 @@ void _delay(unsigned long ms){
   // due to wrong measurement based on changed timer0
   unsigned long t = _micros() + ms*1000;
   while( _micros() < t ){}; 
+  // 用来测试__AVR_ATmega328P__宏定义的
+  // Serial.print("1\r\n");
 #else
+  // 用来测试__AVR_ATmega328P__宏定义的
+  // Serial.print("2\r\n");
   // regular micros
   delay(ms);
 #endif
